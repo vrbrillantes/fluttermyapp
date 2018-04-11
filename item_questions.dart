@@ -3,21 +3,24 @@ class Question {
   String question;
   bool status;
   String type;
+  List<Choice> choiceList = <Choice>[];
 
   Question.fromJson(this.key, Map data) {
+    void iterateChoices(key, value) {
+      print('$key:$value');//string interpolation in action
+      choiceList.insert(choiceList.length, new Choice.fromJson(key, value));
+    }
     question = data['Q'];
     status = data['S'];
     type = data['T'];
+    if(data['Choices'] != null) data['Choices'].forEach(iterateChoices);
   }
 }
-//class Questions {
-//  final String key;
-//  List<Question> questionlist = <Question>[];
-//
-//  Questions.fromJson(this.key, Map data) {
-//    void iterateMapEntry(key, value) {
-//      questionlist.insert(questionlist.length, new Question.fromJson(key, value));
-//    }
-//    data.forEach(iterateMapEntry);
-//  }
-//}
+class Choice {
+  final String key;
+  String choice;
+
+  Choice.fromJson(this.key, String data) {
+    choice = data;
+  }
+}
