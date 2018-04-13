@@ -69,7 +69,7 @@ class _ExpansionPanelsDemoState extends State<ExpasionPanelsDemo> {
                               Colors.orange[100 + (field.value * 5.0).round()],
                           label: '${field.value.round()}',
                           value: field.value,
-                          onChanged: field.onChanged,
+//                          onChanged: field.onChanged,
                         );
                       },
                     ),
@@ -116,7 +116,8 @@ class _ExpansionPanelsDemoState extends State<ExpasionPanelsDemo> {
                                     new Radio<String>(
                                         value: vv.choice,
                                         groupValue: field.value,
-                                        onChanged: field.onChanged),
+//                                        onChanged: field.onChanged
+                                    ),
                                     new Text(vv.choice)
                                   ]));
                             }

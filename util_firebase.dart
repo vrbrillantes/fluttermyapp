@@ -16,7 +16,7 @@ class FirebaseTodos {
         .child('HELLO')
         .child('Events')
 //        .child('-L56EyFw3Ymm3o6A56jM')
-        .orderByChild(todoKey)
+        .orderByChild(accountKey)
         .equalTo(true)
         .onValue
         .listen((Event event) {
@@ -43,26 +43,4 @@ class FirebaseTodos {
 
     return subscription;
   }
-
-//  /// FirebaseTodos.getTodo("-KriJ8Sg4lWIoNswKWc4").then(_updateTodo);
-//  static Future<Todo> getTodo(String todoKey) async {
-//    Completer<Todo> completer = new Completer<Todo>();
-//
-//    String accountKey = await Preferences.getAccountKey();
-//
-//    FirebaseDatabase.instance
-//        .reference()
-//        .child('HELLO')
-//        .child('Events')
-//        .child('-L56EyFw3Ymm3o6A56jM')
-////        .orderByChild('Public')
-////        .equalTo(true)
-//        .once()
-//        .then((DataSnapshot snapshot) {
-//      var todo = new Todo.fromJJ(snapshot.key, snapshot.value);
-//      completer.complete(todo);
-//    });
-//
-//    return completer.future;
-//  }
 }

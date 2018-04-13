@@ -23,10 +23,10 @@ class ScreenSessions extends StatelessWidget {
   }
 }
 class HomePage extends StatefulWidget {
-  String eID;
   HomePage({Key key, this.eID}) : super(key: key);
   @override
   _HomePageState createState() => new _HomePageState(eID: eID);
+  String eID;
 }
 
 class _HomePageState extends State<HomePage>

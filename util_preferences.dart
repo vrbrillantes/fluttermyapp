@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:core';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences {
@@ -14,17 +15,23 @@ class Preferences {
   static Future<String> getAccountKey() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String accountKey = prefs.getString(ACCOUNT_KEY);
-
+    accountKey = accountKey.replaceAll("@", "");
+    accountKey = accountKey.replaceAll(".", "");
+    accountKey = accountKey.replaceAll("_", "");
+    accountKey = accountKey.replaceAll("-", "");
+    print(accountKey);
     // workaround - simulate a login setting this
     if (accountKey == null) {
-      accountKey = "-KriFiUADpl-X07hnBC-";
+      accountKey = "Public";
+    } else {
+      accountKey = "Attendees/" + accountKey;
     }
 
-    return "-KriFiUADpl-X07hnBC-";
+    return accountKey;
   }
   static Future<String> getPhoto() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String accountKey = prefs.getString(ACCOUNT_KEY);
+    String accountKey = prefs.getString(ACCOUNT_PHOTO);
 
     // workaround - simulate a login setting this
     if (accountKey == null) {

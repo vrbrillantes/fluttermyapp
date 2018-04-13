@@ -44,19 +44,17 @@ class _LoginScreenState extends State<LoginScreenState> {
     GoogleSignInAccount user = googleSignIn.currentUser;
     if (user == null) {
       user = await googleSignIn.signInSilently();
-      print(googleSignIn.currentUser.email);
-      print(googleSignIn.currentUser.photoUrl);
-      Preferences.setphoto(googleSignIn.currentUser.photoUrl);
     } else {
       print("Silent sign in");
     }
     if (user == null) {
       await googleSignIn.signIn();
-      print(googleSignIn.currentUser.email);
-      Preferences.setphoto(googleSignIn.currentUser.photoUrl);
-      print(googleSignIn.currentUser.photoUrl);
+//      Preferences.setphoto(googleSignIn.currentUser.photoUrl);
+//      Preferences.setAccountKey(googleSignIn.currentUser.email);
     } else {
       print("google sign in");
+      Preferences.setphoto(user.photoUrl);
+      Preferences.setAccountKey(user.email);
     }
     if (await auth.currentUser() == null) {
       //first sign in
@@ -67,6 +65,7 @@ class _LoginScreenState extends State<LoginScreenState> {
         accessToken: credentials.accessToken,
       );
       Preferences.setphoto(googleSignIn.currentUser.photoUrl);
+      Preferences.setAccountKey(googleSignIn.currentUser.email);
       print(googleSignIn.currentUser.displayName);
       print(googleSignIn.currentUser.photoUrl);
     }
